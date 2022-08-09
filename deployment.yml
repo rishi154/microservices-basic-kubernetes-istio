@@ -20,26 +20,26 @@ spec:
               name: config-server
 ---
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-    labels:
-        app: api-gateway
-    name: api-gateway
-spec:
-    replicas: 1
-    selector:
-        matchLabels:
-            app: api-gateway
-    template:
-        metadata:
-            labels:
-                app: api-gateway
-        spec:
-            containers:
-                - image: rishi154/api-gateway:0.0.1-SNAPSHOT
-                  imagePullPolicy: IfNotPresent
-                  name: api-gateway
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#    labels:
+#        app: api-gateway
+#    name: api-gateway
+#spec:
+#    replicas: 1
+#    selector:
+#        matchLabels:
+#            app: api-gateway
+#    template:
+#        metadata:
+#            labels:
+#                app: api-gateway
+#        spec:
+#            containers:
+#                - image: rishi154/api-gateway:0.0.1-SNAPSHOT
+#                  imagePullPolicy: IfNotPresent
+#                  name: api-gateway
 ---
 
 apiVersion: apps/v1
@@ -158,30 +158,30 @@ kind: Service
 metadata:
   name: config-service
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: config-server
   ports:
     - name: http-config
       port: 30005
       targetPort: 30005
-      nodePort: 30005
+      #nodePort: 30005
 
 ---
 
-apiVersion: v1
-kind: Service
-metadata:
-    name: api-gateway
-spec:
-    type: LoadBalancer
-    selector:
-        app: api-gateway
-    ports:
-        - name: http-apigw
-          port: 30008
-          targetPort: 8080
-          nodePort: 30008
+#apiVersion: v1
+#kind: Service
+#metadata:
+#    name: api-gateway
+#spec:
+#    type: LoadBalancer
+#    selector:
+#        app: api-gateway
+#    ports:
+#        - name: http-apigw
+#          port: 30008
+#          targetPort: 8080
+#          nodePort: 30008
 ---
 
 apiVersion: v1
@@ -189,14 +189,14 @@ kind: Service
 metadata:
     name: authentication-service
 spec:
-    type: NodePort
+    type: ClusterIP
     selector:
         app: authentication-service
     ports:
         - name: http-authentication
           port: 30006
           targetPort: 30006
-          nodePort: 30006
+          #nodePort: 30006
 
 ---
 
@@ -205,14 +205,14 @@ kind: Service
 metadata:
     name: merchant-service
 spec:
-    type: NodePort
+    type: ClusterIP
     selector:
         app: merchant-service
     ports:
         - name: http-merchant
           port: 30009
           targetPort: 30009
-          nodePort: 30009
+          #nodePort: 30009
 
 ---
 
@@ -221,14 +221,14 @@ kind: Service
 metadata:
     name: product-service
 spec:
-    type: NodePort
+    type: ClusterIP
     selector:
         app: product-service
     ports:
         - name: http-product
           port: 30010
           targetPort: 30010
-          nodePort: 30010
+          #nodePort: 30010
 
 ---
 
@@ -237,14 +237,14 @@ kind: Service
 metadata:
     name: customer-service
 spec:
-    type: NodePort
+    type: ClusterIP
     selector:
         app: customer-service
     ports:
         - name: http-customer
           port: 30007
           targetPort: 30007
-          nodePort: 30007
+          #nodePort: 30007
 
 ---
 
@@ -253,11 +253,11 @@ kind: Service
 metadata:
     name: transaction-service
 spec:
-    type: NodePort
+    type: ClusterIP
     selector:
         app: transaction-service
     ports:
         - name: http-transaction
           port: 30011
           targetPort: 30011
-          nodePort: 30011
+          #nodePort: 30011
