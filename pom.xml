@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.6</version>
+		<version>3.3.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.nvrs</groupId>
@@ -17,8 +17,8 @@
 	<description>Project to Manage Customers</description>
 
 	<properties>
-		<java.version>11</java.version>
-		<spring.cloud-version>2020.0.2</spring.cloud-version>
+		<java.version>17</java.version>
+		<spring.cloud-version>2023.0.3</spring.cloud-version>
 	</properties>
 
 	<dependencyManagement>
@@ -44,11 +44,9 @@
 	</build>
 
 	<modules>
-		<module>config-server</module>
 		<module>customer</module>
 		<module>merchant</module>
 		<module>product</module>
 		<module>transaction</module>
-        <module>authentication-service</module>
 	</modules>
 </project>

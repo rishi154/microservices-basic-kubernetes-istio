@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11
+FROM openjdk:17-ea-slim-buster
 RUN addgroup --system spring && adduser --system spring && adduser spring spring
 USER spring:spring
 ARG JAR_FILE
