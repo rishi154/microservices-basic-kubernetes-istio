@@ -15,7 +15,7 @@ spec:
                 app: merchant-service
         spec:
             containers:
-                - image: rishi154/merchant:0.0.1-SNAPSHOT
+                - image: rishi154/merchant:0.0.1
                   imagePullPolicy: IfNotPresent
                   name: merchant-service
 ---
@@ -37,7 +37,7 @@ spec:
                 app: product-service
         spec:
             containers:
-                - image: rishi154/product:0.0.1-SNAPSHOT
+                - image: rishi154/product:0.0.1
                   imagePullPolicy: IfNotPresent
                   name: product-service
 ---
@@ -59,7 +59,7 @@ spec:
                 app: customer-service
         spec:
             containers:
-                - image: rishi154/customer:0.0.1-SNAPSHOT
+                - image: rishi154/customer:0.0.1
                   imagePullPolicy: IfNotPresent
                   name: customer-service
 ---
@@ -81,7 +81,7 @@ spec:
                 app: transaction-service
         spec:
             containers:
-                - image: rishi154/transaction:0.0.1-SNAPSHOT
+                - image: rishi154/transaction:0.0.1
                   imagePullPolicy: IfNotPresent
                   name: transaction-service
 ---
