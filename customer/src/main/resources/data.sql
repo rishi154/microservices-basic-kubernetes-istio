@@ -1,5 +1,6 @@
-/*create table customer(id number primary key, name varchar2(50), address varchar2(50), phone varchar(50), date_created date, date_modified date, status varchar2(50));*/
+create table customer ( date_created timestamp(6), date_modified timestamp(6), id bigint not null,   merchant_id bigint,  address varchar(255),name varchar(255), phone varchar(255), status varchar(255),primary key (id));
 
+create sequence customer_id_sequence start with 1 increment by 1;
 
 insert into customer (address, date_created, date_modified, name, phone, status, merchant_id, id) values ('Pimple Saudagar', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 'Customer 1', '134567890', 'ACTIVE', 1, nextval('customer_id_sequence'));
 

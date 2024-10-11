@@ -1,9 +1,8 @@
 package com.nvrs.merchant.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.data.domain.Page;
+import org.apache.ibatis.session.RowBounds;
 
 import com.nvrs.merchant.entity.Merchant;
 
@@ -12,7 +11,7 @@ public interface MerchantService {
 
 	List<Merchant> getAllMerchants();
 
-	Page<Merchant> getAllMerchantsByPage();
+	List<Merchant> getAllMerchantsByPage(RowBounds rb);
 
 	void saveMerchant(Merchant body);
 

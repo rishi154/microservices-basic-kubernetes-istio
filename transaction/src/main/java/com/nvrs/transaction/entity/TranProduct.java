@@ -5,6 +5,9 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -12,89 +15,18 @@ import org.hibernate.annotations.Parameter;
  * Customer
  */
 
-@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TranProduct {
-	@Id
-	@GeneratedValue(generator = "sequence-generator")
-	@GenericGenerator(name = "sequence-generator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
-			@Parameter(name = "sequence_name", value = "tran_product_id_sequence"),
-			@Parameter(name = "initial_value", value = "1"), @Parameter(name = "increment_size", value = "1") })
+
 	private Long id = null;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "TRAN_ID")
-	@JsonBackReference
-	private Transaction transaction;
-	
-	public Transaction getTransaction() {
-		return transaction;
-	}
-
-	public void setTransaction(Transaction transaction) {
-		this.transaction = transaction;
-	}
-
+	//private Transaction transaction;
 	private String description = null;
 	private Long price;
 	private int quantity;
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Long getPrice() {
-		return price;
-	}
-
-	public void setPrice(Long price) {
-		this.price = price;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
 	private Date dateCreated = null;
 	private Date dateModified = null;
-
-	public TranProduct id(Long id) {
-		this.id = id;
-		return this;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	@PostPersist
-	public void setDateModified() {
-		this.dateModified = new Date();
-	}
-
-	@PrePersist
-	public void setDateCreated() {
-		this.dateCreated = this.dateModified = new Date();
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
 
 	@Override
 	public String toString() {

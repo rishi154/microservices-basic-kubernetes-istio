@@ -3,15 +3,12 @@ package com.nvrs.customer.controller;
 import java.util.List;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nvrs.customer.entity.Customer;
@@ -51,13 +48,13 @@ public class CustomerController {
     }
 	
 	@GetMapping(path = "/customer/page/{pageNo}")
-	public ResponseEntity<Page<Customer>> getAllCustomersByPage(@PathVariable("pageNo") int pageNo) {
-		return new ResponseEntity<Page<Customer>>(
-				customerService.getAllCustomersByPage(pageNo),
+	public ResponseEntity<List<Customer>> getAllCustomersByPage(@PathVariable("pageNo") int pageNo) {
+		return new ResponseEntity<List<Customer>>(
+				customerService.getAllCustomersByPage(new RowBounds(pageNo,2)),
 				HttpStatus.OK
 		);
     }
-	
+
 	@PostMapping(path = "/customer")
 	public ResponseEntity<Void> addCustomer(@RequestBody Customer body) {
 		customerService.saveCustomer(body);

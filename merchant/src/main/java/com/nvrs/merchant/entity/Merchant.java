@@ -1,109 +1,28 @@
 package com.nvrs.merchant.entity;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
-
-import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Merchant
  */
 
-@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Merchant {
-	@Id
-	@GeneratedValue(generator = "sequence-generator")
-	@GenericGenerator(name = "sequence-generator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
-			@Parameter(name = "sequence_name", value = "merchant_id_sequence"),
-			@Parameter(name = "initial_value", value = "1"), @Parameter(name = "increment_size", value = "1") })
 	private Long id = null;
 	private String name = null;
 	private String address = null;
 	private String phone = null;
-	private Date dateCreated = null;
-	private Date dateModified = null;
+	private Date dateCreated = Date.from(Instant.now());
+	private Date dateModified = Date.from(Instant.now());
 	private String status = null;
-
-	public Merchant id(Long id) {
-		this.id = id;
-		return this;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Merchant name(String name) {
-		this.name = name;
-		return this;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Merchant address(String address) {
-		this.address = address;
-		return this;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public Merchant phone(String phone) {
-		this.phone = phone;
-		return this;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	@PostPersist
-	public void setDateModified() {
-		this.dateModified = new Date();
-	}
-
-	@PrePersist
-	public void setDateCreated() {
-		this.dateCreated = this.dateModified = new Date();
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 
 	@Override
 	public boolean equals(java.lang.Object o) {

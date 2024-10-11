@@ -2,6 +2,7 @@ package com.nvrs.merchant.controller;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -52,9 +53,9 @@ public class MerchantController {
     }
 	
 	@GetMapping(path = "/merchant/page/1")
-	public ResponseEntity<Page<Merchant>> getAllMerchantsByPage() {
-        return new ResponseEntity<Page<Merchant>>(
-				merchantService.getAllMerchantsByPage(),
+	public ResponseEntity<List<Merchant>> getAllMerchantsByPage(@PathVariable("pageNo") int pageNo) {
+        return new ResponseEntity<List<Merchant>>(
+				merchantService.getAllMerchantsByPage(new RowBounds(pageNo,2)),
 				HttpStatus.OK);
     }
 	

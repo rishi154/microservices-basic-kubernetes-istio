@@ -3,18 +3,13 @@ package com.nvrs.transaction.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
+import com.nvrs.transaction.mapper.TransactionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nvrs.transaction.client.CustomerClient;
-import com.nvrs.transaction.client.MerchantClient;
-import com.nvrs.transaction.entity.Customer;
-import com.nvrs.transaction.entity.Merchant;
 import com.nvrs.transaction.entity.TranProduct;
 import com.nvrs.transaction.entity.Transaction;
-import com.nvrs.transaction.repository.TransactionRepository;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -22,20 +17,20 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Autowired
 	RestTemplate restTemplate;
-	
+
 	@Autowired
-	TransactionRepository tranRepo;
+	TransactionMapper transactionMapper;
 	
 	@Override
 	public void createTransaction(Transaction body) throws Exception {
 		
-		if(!isValidMerchant(body.getMerchantId())) {			
+		/*if(!isValidMerchant(body.getMerchantId())) {
 			throw new Exception("Invalid Merchant");
 		}
 		
 		if(!isValidCustomer(body.getCustomerId())) {
 			throw new Exception("Invalid Customer");
-		}
+		}*/
 		
 		Transaction xtn = new Transaction();
 		xtn.setMerchantId(body.getMerchantId());
@@ -46,7 +41,7 @@ public class TransactionServiceImpl implements TransactionService {
 		for(int i=0;i<body.getProducts().size();i++) {
 			TranProduct prodBean = body.getProducts().get(i);
 			tp = new TranProduct();
-			tp.setTransaction(xtn);
+			//tp.setTransaction(xtn);
 			tp.setDescription(prodBean.getDescription());
 			tp.setQuantity(prodBean.getQuantity());
 			tp.setPrice(prodBean.getPrice());
@@ -54,21 +49,22 @@ public class TransactionServiceImpl implements TransactionService {
 		}
 		xtn.setProducts(prodInTran);
 		xtn.setStatus("SUCCESS");
-		
-		tranRepo.save(xtn);
+
+		//transactionMapper.save(xtn);
 	}
 
 	@Override
 	public Transaction getTransactionById(long tranId) {
-		return tranRepo.findById(tranId).orElse(null);
+	//	return transactionMapper.findById(tranId).orElse(null);
+		return null;
 	}
 
 	@Override
 	public List<Transaction> getAllTransactions() {
-		return tranRepo.findAll();
+		return transactionMapper.findAll();
 	}
 
-	private boolean isValidCustomer(Long customerId) {
+	/*private boolean isValidCustomer(Long customerId) {
 
 		HashMap params = new HashMap();
 		params.put("customerId",customerId);
@@ -79,9 +75,9 @@ public class TransactionServiceImpl implements TransactionService {
 			return true;
 		}
 		return false;
-	}
+	}*/
 
-	private boolean isValidMerchant(Long merchantId) {
+	/*private boolean isValidMerchant(Long merchantId) {
 
 		HashMap params = new HashMap();
 		params.put("merchantId",merchantId);
@@ -91,6 +87,6 @@ public class TransactionServiceImpl implements TransactionService {
 			return true;
 		}		
 		return false;
-	}
+	}*/
 
 }

@@ -1,6 +1,7 @@
 package com.nvrs.product.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class ProductController {
 				HttpStatus.OK
 		);
     }
-	
+
 	
 	@GetMapping(path = "/product")
 	public ResponseEntity<List<Product>> getAllProducts() {
@@ -51,14 +52,12 @@ public class ProductController {
     }
 	
 	@GetMapping(path = "/product/page/1")
-	public ResponseEntity<Page<Product>> getAllProductsByPage() {
-        return new ResponseEntity<Page<Product>>(
-			productService.getAllProductsByPage(),
+	public ResponseEntity<List<Product>> getAllProductsByPage(@PathVariable("pageNo") int pageNo) {
+        return new ResponseEntity<List<Product>>(
+			productService.getAllProductsByPage(new RowBounds(pageNo,2)),
 			HttpStatus.OK
 		);
     }
-	
-
 	
 	@PostMapping(path = "/product")
 	public ResponseEntity<Void> addCustomer(@RequestBody Product body) {

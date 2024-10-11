@@ -1,5 +1,6 @@
-/*create table merchant(id number primary key, name varchar2(50), address varchar2(50), phone varchar(50), dateCreated date, dateModified date, status varchar2(50));*/
+create table merchant(id number primary key, name varchar2(50), address varchar2(50), phone varchar(50), date_created date, date_modified date, status varchar2(50));
 
+create sequence merchant_id_sequence start with 1 increment by 1;
 
 insert into merchant (address, date_created, date_modified, name, phone, status, id) values ('Pimple Saudagar', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 'Big Bazar', '134567890', 'ACTIVE', nextval('MERCHANT_ID_SEQUENCE'));
 

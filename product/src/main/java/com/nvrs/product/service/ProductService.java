@@ -1,5 +1,6 @@
 package com.nvrs.product.service;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.data.domain.Page;
 
 import com.nvrs.product.entity.Product;
@@ -11,7 +12,7 @@ public interface ProductService {
 
 	List<Product> getAllProducts();
 
-	Page<Product> getAllProductsByPage();
+	List<Product> getAllProductsByPage(RowBounds rb);
 
 	void saveProduct(Product body);
 
