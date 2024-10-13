@@ -4,6 +4,7 @@ metadata:
     labels:
         app: merchant-service
     name: merchant-service
+    namespace: nvrs
 spec:
     replicas: 1
     selector:
@@ -26,6 +27,7 @@ metadata:
     labels:
         app: product-service
     name: product-service
+    namespace: nvrs
 spec:
     replicas: 1
     selector:
@@ -48,6 +50,7 @@ metadata:
     labels:
         app: customer-service
     name: customer-service
+    namespace: nvrs
 spec:
     replicas: 1
     selector:
@@ -70,6 +73,7 @@ metadata:
     labels:
         app: transaction-service
     name: transaction-service
+    namespace: nvrs
 spec:
     replicas: 1
     selector:
@@ -90,6 +94,7 @@ apiVersion: v1
 kind: Service
 metadata:
     name: merchant-service
+    namespace: nvrs
 spec:
     type: ClusterIP
     selector:
@@ -106,6 +111,7 @@ apiVersion: v1
 kind: Service
 metadata:
     name: product-service
+    namespace: nvrs
 spec:
     type: ClusterIP
     selector:
@@ -122,6 +128,7 @@ apiVersion: v1
 kind: Service
 metadata:
     name: customer-service
+    namespace: nvrs
 spec:
     type: ClusterIP
     selector:
@@ -138,6 +145,7 @@ apiVersion: v1
 kind: Service
 metadata:
     name: transaction-service
+    namespace: nvrs
 spec:
     type: ClusterIP
     selector:
