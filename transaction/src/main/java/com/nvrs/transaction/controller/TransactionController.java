@@ -14,23 +14,12 @@ import java.util.List;
 
 @RestController
 public class TransactionController {
-
-	private final ObjectMapper objectMapper;
-
-	private final HttpServletRequest request;
 	
 	@Autowired
 	TransactionService transactionService;
-	
-	@Autowired
-	public TransactionController(ObjectMapper objectMapper, HttpServletRequest request) {
-		this.objectMapper = objectMapper;
-		this.request = request;
-	}
 
 	@PostMapping(path = "/transaction")
 	public ResponseEntity<?> createTransaction(@RequestBody Transaction body) {
-		System.out.println(body.toString());
 		try {
 			transactionService.createTransaction(body);
 		} catch (Exception e) {

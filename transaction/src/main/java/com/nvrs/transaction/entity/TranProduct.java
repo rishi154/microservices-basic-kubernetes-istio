@@ -1,15 +1,13 @@
 package com.nvrs.transaction.entity;
 
+import java.time.Instant;
 import java.util.Date;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
+
 
 /**
  * Customer
@@ -25,8 +23,8 @@ public class TranProduct {
 	private String description = null;
 	private Long price;
 	private int quantity;
-	private Date dateCreated = null;
-	private Date dateModified = null;
+	private Date dateCreated = Date.from(Instant.now());
+	private Date dateModified = Date.from(Instant.now());
 
 	@Override
 	public String toString() {

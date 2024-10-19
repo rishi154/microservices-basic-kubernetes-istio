@@ -21,22 +21,12 @@ import java.util.List;
 
 @RestController
 public class MerchantController {
-
-	private final ObjectMapper objectMapper;
-
-	private final HttpServletRequest request;
 	
 	@Autowired
 	private MerchantService merchantService;
 
-	@Autowired
-	public MerchantController(ObjectMapper objectMapper, HttpServletRequest request) {
-		this.objectMapper = objectMapper;
-		this.request = request;
-	}
-
 	@GetMapping(path = "/merchant/{merchantId}")
-	public ResponseEntity<Merchant> getMerchantById(@PathVariable("merchantId") Long merchantId) {
+	public ResponseEntity<Merchant> getMerchantById(@PathVariable("merchantId") Long merchantId) throws InterruptedException {
 		return new ResponseEntity<Merchant>(
 			merchantService.getMerchantById(merchantId),
 			HttpStatus.OK
