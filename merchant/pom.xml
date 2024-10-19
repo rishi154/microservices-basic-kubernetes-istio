@@ -11,7 +11,7 @@
 	<groupId>com.nvrs</groupId>
 	<artifactId>merchant</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>merchant-service</name>
+	<name>merchant</name>
 	<description>Merchant Service Project</description>
 
 	<properties>
