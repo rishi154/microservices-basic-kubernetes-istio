@@ -3,7 +3,6 @@ package com.nvrs.customer.mapper;
 import com.nvrs.customer.entity.Customer;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.session.RowBounds;
-import org.springframework.data.domain.Page;
 
 import java.sql.Timestamp;
 import java.util.Date;

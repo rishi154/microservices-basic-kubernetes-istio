@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import com.nvrs.customer.entity.Customer;
 import org.apache.ibatis.session.RowBounds;
-import org.springframework.data.domain.Page;
 
 
 public interface CustomerService {
